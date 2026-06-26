@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  deterministic-tests:
+    name: Deterministic tests (no model, no external runtimes)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure git (worktree tests create commits)
+        run: |
+          git config --global user.name  "ci"
+          git config --global user.email "ci@example.com"
+          git config --global init.defaultBranch main
+
+      - name: SessionStart hook
+        run: bash tests/hooks/test-session-start.sh
+
+      - name: SDD workspace script
+        run: bash tests/claude-code/test-sdd-workspace.sh
+
+      - name: Worktree path policy
+        run: bash tests/claude-code/test-worktree-path-policy.sh
+
+      - name: Shell lint (shellcheck)
+        run: bash tests/shell-lint/test-lint-shell.sh
+
+# Intentionally NOT run in CI:
+# - Model-invoking behavioral evals — tests/explicit-skill-requests/**,
+#   tests/claude-code/test-subagent-driven-development*.sh, and
+#   test-worktree-native-preference.sh — require ANTHROPIC_API_KEY and a live
+#   model, and grade non-deterministic agent behavior. Run them locally with a
+#   key when validating skill *behavior*, not as a pass/fail gate.
+# - Cross-runtime suites (opencode/, pi/, kimi/, codex-plugin-sync/,
+#   antigravity/, brainstorm-server/) — need their respective toolchains.
