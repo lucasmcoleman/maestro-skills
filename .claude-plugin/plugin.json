@@ -1,0 +1,18 @@
+{
+  "name": "maestro",
+  "description": "Maestro \u2014 orchestration-first agentic skills (parallel subagents, dynamic workflows, adversarial fresh-context verification, two-tier synthesis) distilled from Claude Fable 5 traces and tuned to run on any model tier (Opus/Sonnet/Haiku). Derived from Superpowers by Jesse Vincent.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Lucas Coleman",
+    "email": "lucasmontanacoleman@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "orchestration",
+    "subagents",
+    "workflows",
+    "verification",
+    "agentic"
+  ]
+}

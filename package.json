@@ -1,0 +1,23 @@
+{
+  "name": "maestro",
+  "version": "1.0.0",
+  "description": "Maestro orchestration skills and runtime bootstrap for coding agents",
+  "type": "module",
+  "main": ".opencode/plugins/maestro.js",
+  "keywords": [
+    "pi-package",
+    "skills",
+    "tdd",
+    "debugging",
+    "collaboration",
+    "workflow"
+  ],
+  "pi": {
+    "extensions": [
+      "./.pi/extensions/maestro.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  }
+}
