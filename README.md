@@ -23,6 +23,22 @@ preserved as [`README.superpowers-upstream.md`](README.superpowers-upstream.md) 
 
 ---
 
+## How it was made
+
+Maestro was reverse-engineered from **Claude Fable 5**. We mined ~52 MB of real Fable
+agent traces (plus Anthropic's official Fable prompting guide) to extract Fable's
+*operating instincts* — parallel/async subagents, refute-by-default verification, dynamic
+workflows, capability-seeking, context hygiene — and wrote them down as a doctrine. Then
+we used **Opus/Sonnet subagents, orchestrated with those very Fable patterns**, to rewrite
+the Superpowers skills so any tier reproduces that behavior — deliberately *keeping* the
+explicit scaffolding (the opposite of how you'd prompt Fable) because the runtime is
+Sonnet/Opus/Haiku, which need it. The result was verified with an adversarial diverse-lens
+panel and a blinded, repeated, controlled A/B against stock.
+
+📄 **Full write-up:** [`docs/how-maestro-was-made.md`](docs/how-maestro-was-made.md)
+
+---
+
 ## ⚠️ The governing principle: TARGET RUNTIME (doctrine §0)
 
 **These skills run on Opus / Sonnet / Haiku / other NON-Fable models — not on
